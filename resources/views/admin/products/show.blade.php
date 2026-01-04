@@ -35,13 +35,13 @@
                                         </div>
                                         <div>
                                             <p class="text-sm text-gray-500 dark:text-gray-400">Price</p>
-                                            <p class="text-sm font-medium text-gray-900 dark:text-white">${{ number_format($product->price, 2) }}</p>
+                                            <p class="text-sm font-medium text-gray-900 dark:text-white">PKR {{ number_format($product->price, 2) }}</p>
                                         </div>
                                         <div>
                                             <p class="text-sm text-gray-500 dark:text-gray-400">Sale Price</p>
                                             <p class="text-sm font-medium text-gray-900 dark:text-white">
                                                 @if($product->sale_price)
-                                                    ${{ number_format($product->sale_price, 2) }}
+                                                    PKR {{ number_format($product->sale_price, 2) }}
                                                 @else
                                                     <span class="text-gray-400">—</span>
                                                 @endif
@@ -84,21 +84,32 @@
                                 </div>
                             </div>
 
-                            @if($product->specifications)
-                            <div class="mb-6">
-                                <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Specifications</h3>
-                                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
-                                    <dl class="divide-y divide-gray-200 dark:divide-gray-600">
-                                        @foreach($product->specifications as $key => $value)
-                                        <div class="py-2 grid grid-cols-3 gap-4">
-                                            <dt class="text-sm font-medium text-gray-900 dark:text-white">{{ $key }}</dt>
-                                            <dd class="text-sm text-gray-900 dark:text-white col-span-2">{{ $value }}</dd>
-                                        </div>
-                                        @endforeach
-                                    </dl>
-                                </div>
-                            </div>
-                            @endif
+                           @if(
+    $product->specifications &&
+    isset($product->specifications['key'], $product->specifications['value'])
+)
+    <div class="mb-6">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            Specifications
+        </h3>
+
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
+            <dl class="divide-y divide-gray-200 dark:divide-gray-600">
+                @foreach($product->specifications['key'] as $index => $specKey)
+                    <div class="py-2 grid grid-cols-3 gap-4">
+                        <dt class="text-sm font-medium text-gray-900 dark:text-white">
+                            {{ $specKey }}
+                        </dt>
+                        <dd class="text-sm text-gray-900 dark:text-white col-span-2">
+                            {{ $product->specifications['value'][$index] ?? '-' }}
+                        </dd>
+                    </div>
+                @endforeach
+            </dl>
+        </div>
+    </div>
+@endif
+
                         </div>
 
                         <div>

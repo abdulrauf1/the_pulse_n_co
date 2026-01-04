@@ -127,11 +127,11 @@
                             <div>
                                 @if($product->has_active_promotion)
                                     <div class="flex items-center">
-                                        <span class="text-lg font-bold text-gray-900 dark:text-white">${{ number_format($product->discounted_price, 2) }}</span>
-                                        <span class="ml-2 text-sm text-gray-500 dark:text-gray-400 line-through">${{ number_format($product->price, 2) }}</span>
+                                        <span class="text-lg font-bold text-gray-900 dark:text-white">PKR {{ number_format($product->discounted_price, 2) }}</span>
+                                        <span class="ml-2 text-sm text-gray-500 dark:text-gray-400 line-through">PKR {{ number_format($product->price, 2) }}</span>
                                     </div>
                                 @else
-                                    <span class="text-lg font-bold text-gray-900 dark:text-white">${{ number_format($product->price, 2) }}</span>
+                                    <span class="text-lg font-bold text-gray-900 dark:text-white">PKR {{ number_format($product->price, 2) }}</span>
                                 @endif
                             </div>
                             

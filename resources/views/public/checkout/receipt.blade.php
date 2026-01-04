@@ -52,8 +52,8 @@
                             @endif
                         </td>
                         <td class="text-right py-2 px-4">{{ $item->quantity }}</td>
-                        <td class="text-right py-2 px-4">${{ number_format($item->unit_price, 2) }}</td>
-                        <td class="text-right py-2 px-4">${{ number_format($item->unit_price * $item->quantity, 2) }}</td>
+                        <td class="text-right py-2 px-4">PKR {{ number_format($item->unit_price, 2) }}</td>
+                        <td class="text-right py-2 px-4">PKR {{ number_format($item->unit_price * $item->quantity, 2) }}</td>
                     </tr>
                     @empty
                     <tr>
@@ -68,7 +68,7 @@
         <div class="mb-6 border-t pt-4">
             <div class="flex justify-between mb-2">
                 <span class="font-medium">Subtotal:</span>
-                <span>${{ number_format($order->total_amount, 2) }}</span>
+                <span>PKR {{ number_format($order->total_amount, 2) }}</span>
             </div>
             <div class="flex justify-between mb-2">
                 <span class="font-medium">Shipping:</span>
@@ -76,11 +76,11 @@
             </div>
             <div class="flex justify-between mb-2">
                 <span class="font-medium">Tax:</span>
-                <span>$0.00</span>
+                <span>PKR 0.00</span>
             </div>
             <div class="flex justify-between border-t pt-2 font-bold text-lg">
                 <span>Total:</span>
-                <span>${{ number_format($order->total_amount, 2) }}</span>
+                <span>PKR {{ number_format($order->total_amount, 2) }}</span>
             </div>
         </div>
         

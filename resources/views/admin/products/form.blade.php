@@ -64,13 +64,13 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="form-group">
-                <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Price ($) *</label>
+                <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Price (PKR) *</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span class="text-gray-500 dark:text-gray-400">$</span>
+                        <span class="text-gray-500 dark:text-gray-400">PKR</span>
                     </div>
                     <input type="number" step="0.01" name="price" id="price" value="{{ old('price', $product->price ?? '') }}" 
-                            class="pl-7 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-3 @error('price') error-input @enderror" 
+                            class="pl-12 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-3 @error('price') error-input @enderror" 
                             placeholder="0.00">
                 </div>
                 @error('price')
@@ -84,13 +84,13 @@
             </div>
 
             <div class="form-group">
-                <label for="sale_price" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Sale Price ($)</label>
+                <label for="sale_price" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Sale Price (PKR)</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span class="text-gray-500 dark:text-gray-400">$</span>
+                        <span class="text-gray-500 dark:text-gray-400">PKR</span>
                     </div>
                     <input type="number" step="0.01" name="sale_price" id="sale_price" value="{{ old('sale_price', $product->sale_price ?? '') }}" 
-                            class="pl-7 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-3 @error('sale_price') error-input @enderror" 
+                            class="pl-12 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-3 @error('sale_price') error-input @enderror" 
                             placeholder="0.00">
                 </div>
                 @error('sale_price')
@@ -108,40 +108,56 @@
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Specifications</label>
             <div id="specifications-container" class="space-y-3">
                 @php
-                    $specifications = old('specifications', $product->specifications ?? []);
-                @endphp
-                
-                @if(!empty($specifications) && is_array($specifications))
-                    @foreach($specifications as $key => $value)
-                        <div class="flex gap-3 specification-row items-start">
-                            <div class="flex-1">
-                                <input type="text" name="specifications[key][]" value="{{ $key }}" placeholder="Specification name" 
-                                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
-                            </div>
-                            <div class="flex-1">
-                                <input type="text" name="specifications[value][]" value="{{ $value[0] }}" placeholder="Specification value" 
-                                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
-                            </div>
-                            <button type="button" class="remove-specification bg-rose-100 text-rose-700 px-3 py-2.5 rounded-md hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50 remove-btn">
-                                Remove
-                            </button>
-                        </div>
-                    @endforeach
-                @else
-                    <div class="flex gap-3 specification-row items-start">
-                        <div class="flex-1">
-                            <input type="text" name="specifications[key][]" placeholder="Specification name" 
-                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
-                        </div>
-                        <div class="flex-1">
-                            <input type="text" name="specifications[value][]" placeholder="Specification value" 
-                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
-                        </div>
-                        <button type="button" class="remove-specification bg-rose-100 text-rose-700 px-3 py-2.5 rounded-md hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50 remove-btn">
-                            Remove
-                        </button>
-                    </div>
-                @endif
+    $specifications = old('specifications', $product->specifications ?? []);
+@endphp
+
+@if(
+    isset($specifications['key'], $specifications['value']) &&
+    is_array($specifications['key']) &&
+    is_array($specifications['value'])
+)
+    @foreach($specifications['key'] as $index => $specKey)
+        <div class="flex gap-3 specification-row items-start">
+            <div class="flex-1">
+                <input type="text"
+                       name="specifications[key][]"
+                       value="{{ $specKey }}"
+                       placeholder="Specification name"
+                       class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
+            </div>
+
+            <div class="flex-1">
+                <input type="text"
+                       name="specifications[value][]"
+                       value="{{ $specifications['value'][$index] ?? '' }}"
+                       placeholder="Specification value"
+                       class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
+            </div>
+
+            <button type="button"
+                    class="remove-specification bg-rose-100 text-rose-700 px-3 py-2.5 rounded-md hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50 remove-btn">
+                Remove
+            </button>
+        </div>
+    @endforeach
+@else
+    {{-- Empty row for new product --}}
+    <div class="flex gap-3 specification-row items-start">
+        <div class="flex-1">
+            <input type="text" name="specifications[key][]" placeholder="Specification name"
+                   class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
+        </div>
+        <div class="flex-1">
+            <input type="text" name="specifications[value][]" placeholder="Specification value"
+                   class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2.5">
+        </div>
+        <button type="button"
+                class="remove-specification bg-rose-100 text-rose-700 px-3 py-2.5 rounded-md hover:bg-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:hover:bg-rose-900/50 remove-btn">
+            Remove
+        </button>
+    </div>
+@endif
+
             </div>
             <button type="button" id="add-specification" class="mt-3 bg-blue-100 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/50">
                 + Add Specification

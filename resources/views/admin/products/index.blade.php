@@ -70,10 +70,10 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                         @if($product->sale_price)
-                                            <span class="line-through text-gray-400 dark:text-gray-500">${{ number_format($product->price, 2) }}</span>
-                                            <span class="text-rose-600 dark:text-rose-400 font-medium">${{ number_format($product->sale_price, 2) }}</span>
+                                            <span class="line-through text-gray-400 dark:text-gray-500">PKR {{ number_format($product->price, 2) }}</span>
+                                            <span class="text-rose-600 dark:text-rose-400 font-medium">PKR {{ number_format($product->sale_price, 2) }}</span>
                                         @else
-                                            ${{ number_format($product->price, 2) }}
+                                            PKR {{ number_format($product->price, 2) }}
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">

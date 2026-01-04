@@ -77,13 +77,13 @@
                                 </div>
                                 <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
                                     <p class="text-2xl font-bold text-gray-900 dark:text-white">
-                                        ${{ number_format($customer->orders()->sum('total_amount'), 2) }}
+                                        PKR {{ number_format($customer->orders()->sum('total_amount'), 2) }}
                                     </p>
                                     <p class="text-sm text-gray-500 dark:text-gray-400">Total Spent</p>
                                 </div>
                                 <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
                                     <p class="text-2xl font-bold text-gray-900 dark:text-white">
-                                        ${{ number_format($customer->orders()->avg('total_amount') ?? 0, 2) }}
+                                        PKR {{ number_format($customer->orders()->avg('total_amount') ?? 0, 2) }}
                                     </p>
                                     <p class="text-sm text-gray-500 dark:text-gray-400">Average Order</p>
                                 </div>
@@ -130,7 +130,7 @@
                                                         <div class="text-sm text-gray-900 dark:text-white">{{ $order->items_count }} items</div>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
-                                                        <div class="text-sm font-medium text-gray-900 dark:text-white">${{ number_format($order->total_amount, 2) }}</div>
+                                                        <div class="text-sm font-medium text-gray-900 dark:text-white">PKR {{ number_format($order->total_amount, 2) }}</div>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 

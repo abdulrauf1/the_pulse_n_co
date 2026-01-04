@@ -45,7 +45,7 @@
                                             <div class="text-sm text-gray-500 dark:text-gray-400">{{ $order->created_at->format('h:i A') }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900 dark:text-white">${{ number_format($order->total_amount, 2) }}</div>
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">PKR {{ number_format($order->total_amount, 2) }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900 dark:text-white capitalize">{{ $order->payment_method }}</div>

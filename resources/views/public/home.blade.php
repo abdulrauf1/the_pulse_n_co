@@ -14,7 +14,7 @@
                             @if($promotion->discount_type === 'percentage')
                                 {{ $promotion->discount_value }}% OFF
                             @else
-                                ${{ $promotion->discount_value }} OFF
+                                PKR {{ $promotion->discount_value }} OFF
                             @endif
                             @if($promotion->promo_code)
                                 | Use code: {{ $promotion->promo_code }}
@@ -145,10 +145,10 @@
                             
                             <div class="flex items-center mt-2">
                                 @if($hasPromotion)
-                                    <p class="text-rose-400 font-bold text-lg">${{ number_format($finalPrice, 2) }}</p>
-                                    <p class="text-gray-500 dark:text-gray-400 line-through text-sm ml-2">${{ number_format($product->price, 2) }}</p>
+                                    <p class="text-rose-400 font-bold text-lg">PKR {{ number_format($finalPrice, 2) }}</p>
+                                    <p class="text-gray-500 dark:text-gray-400 line-through text-sm ml-2">PKR {{ number_format($product->price, 2) }}</p>
                                 @else
-                                    <p class="text-rose-400 font-bold text-lg">${{ number_format($product->price, 2) }}</p>
+                                    <p class="text-rose-400 font-bold text-lg">PKR {{ number_format($product->price, 2) }}</p>
                                 @endif
                             </div>
                             
@@ -277,10 +277,10 @@
                         
                         <div class="flex items-center mt-2">
                             @if($hasPromotion)
-                                <p class="text-rose-400 font-bold text-lg">${{ number_format($finalPrice, 2) }}</p>
-                                <p class="text-gray-500 dark:text-gray-400 line-through text-sm ml-2">${{ number_format($product->price, 2) }}</p>
+                                <p class="text-rose-400 font-bold text-lg">PKR {{ number_format($finalPrice, 2) }}</p>
+                                <p class="text-gray-500 dark:text-gray-400 line-through text-sm ml-2">PKR {{ number_format($product->price, 2) }}</p>
                             @else
-                                <p class="text-rose-400 font-bold text-lg">${{ number_format($product->price, 2) }}</p>
+                                <p class="text-rose-400 font-bold text-lg">PKR {{ number_format($product->price, 2) }}</p>
                             @endif
                         </div>
                         

@@ -36,7 +36,7 @@
                                             <h3 class="text-lg font-medium text-gray-900 dark:text-white">Premium Automatic Watch {{ $item }}</h3>
                                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Strap Color: Brown</p>
                                         </div>
-                                        <p class="text-lg font-medium text-rose-400">${{ 599 + ($item * 100) }}</p>
+                                        <p class="text-lg font-medium text-rose-400">PKR {{ 599 + ($item * 100) }}</p>
                                     </div>
                                     <div class="mt-4 flex justify-between items-center">
                                         <div class="flex items-center">
@@ -86,23 +86,23 @@
                             <div class="space-y-4">
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 dark:text-gray-400">Subtotal</span>
-                                    <span class="text-gray-900 dark:text-white">$1,897.00</span>
+                                    <span class="text-gray-900 dark:text-white">PKR 1,897.00</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 dark:text-gray-400">Shipping</span>
-                                    <span class="text-gray-900 dark:text-white">$0.00</span>
+                                    <span class="text-gray-900 dark:text-white">PKR 0.00</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 dark:text-gray-400">Tax</span>
-                                    <span class="text-gray-900 dark:text-white">$151.76</span>
+                                    <span class="text-gray-900 dark:text-white">PKR 151.76</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 dark:text-gray-400">Discount</span>
-                                    <span class="text-green-500">-$50.00</span>
+                                    <span class="text-green-500">PKR -50.00</span>
                                 </div>
                                 <div class="border-t border-gray-200 dark:border-gray-700 pt-4 flex justify-between">
                                     <span class="text-lg font-medium text-gray-900 dark:text-white">Total</span>
-                                    <span class="text-lg font-bold text-rose-400">$1,998.76</span>
+                                    <span class="text-lg font-bold text-rose-400">PKR 1,998.76</span>
                                 </div>
                             </div>
                             <button class="mt-6 w-full bg-blue-800 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
@@ -169,7 +169,7 @@
                             <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">({{ rand(10, 100) }})</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold text-rose-400">${{ 399 + ($product * 50) }}</span>
+                            <span class="text-lg font-bold text-rose-400">PKR {{ 399 + ($product * 50) }}</span>
                             <button class="bg-blue-800 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition-colors duration-300">
                                 <i class="fas fa-shopping-cart mr-1"></i> Add
                             </button>

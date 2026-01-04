@@ -119,7 +119,7 @@
                                 <div class="border rounded-lg p-4 dark:border-gray-700">
                                     <h4 class="font-medium text-gray-900 dark:text-white">{{ $product->name }}</h4>
                                     <p class="text-sm text-gray-500 dark:text-gray-400">SKU: {{ $product->sku }}</p>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">Price: ${{ $product->price }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Price: PKR {{ $product->price }}</p>
                                     <div class="mt-2">
                                         <form action="{{ route('admin.promotions.products.update', $promotion) }}" method="POST">
                                             @csrf

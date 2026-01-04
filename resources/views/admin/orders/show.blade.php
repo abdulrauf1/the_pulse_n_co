@@ -43,13 +43,13 @@
                                                     <div class="text-sm text-gray-500 dark:text-gray-400">SKU: {{ $item->product->sku }}</div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                                                    ${{ number_format($item->unit_price, 2) }}
+                                                    PKR {{ number_format($item->unit_price, 2) }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                                                     {{ $item->quantity }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                                    ${{ number_format($item->unit_price * $item->quantity, 2) }}
+                                                    PKR {{ number_format($item->unit_price * $item->quantity, 2) }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -57,11 +57,11 @@
                                     <tfoot class="bg-gray-50 dark:bg-gray-700">
                                         <tr>
                                             <td colspan="3" class="px-6 py-4 text-right text-sm font-medium text-gray-900 dark:text-white">Subtotal</td>
-                                            <td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">${{ number_format($order->total_amount, 2) }}</td>
+                                            <td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">PKR {{ number_format($order->total_amount, 2) }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="px-6 py-4 text-right text-sm font-medium text-gray-900 dark:text-white">Total</td>
-                                            <td class="px-6 py-4 text-sm font-bold text-gray-900 dark:text-white">${{ number_format($order->total_amount, 2) }}</td>
+                                            <td class="px-6 py-4 text-sm font-bold text-gray-900 dark:text-white">PKR {{ number_format($order->total_amount, 2) }}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
