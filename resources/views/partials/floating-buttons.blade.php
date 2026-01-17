@@ -1,11 +1,11 @@
 <div class="fixed right-6 bottom-6 z-50 flex flex-col space-y-4">
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/1234567890" target="_blank" class="w-12 h-12 bg-green-500 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-green-600 transition transform hover:scale-110" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/923104973013" target="_blank" class="w-12 h-12 bg-green-500 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-green-600 transition transform hover:scale-110" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
     
     <!-- Email/Contact Button -->
-    <a href="mailto:info@thepulseandco.com" class="w-12 h-12 bg-blue-800 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-blue-700 transition transform hover:scale-110" aria-label="Send us an email">
+    <a href="mailto:thepulseandco.pk@gmail.com" class="w-12 h-12 bg-blue-800 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-blue-700 transition transform hover:scale-110" aria-label="Send us an email">
         <i class="fas fa-envelope text-xl"></i>
     </a>
     
