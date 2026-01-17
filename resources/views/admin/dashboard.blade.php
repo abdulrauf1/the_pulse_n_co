@@ -29,7 +29,7 @@
                                     </dt>
                                     <dd>
                                         <div class="text-lg font-semibold text-gray-900 dark:text-white">
-                                            ${{ number_format($totalRevenue, 2) }}
+                                            PKR {{ number_format($totalRevenue, 2) }}
                                         </div>
                                     </dd>
                                 </dl>
@@ -230,7 +230,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-right text-sm text-gray-900 dark:text-white">${{ number_format($order->total_amount, 2) }}</div>
+                                <div class="text-right text-sm text-gray-900 dark:text-white">PKR {{ number_format($order->total_amount, 2) }}</div>
                                 <div class="text-right">
                                     @php
                                         $statusColors = [
@@ -275,7 +275,7 @@
                                             <div class="text-sm font-medium text-gray-900 dark:text-white">{{ $product->name }}</div>
                                             <div class="text-sm text-gray-500 dark:text-gray-300">{{ $product->total_sold ?? 0 }} sold</div>
                                         </div>
-                                        <div class="text-sm font-medium text-gray-900 dark:text-white">${{ number_format($product->price, 2) }}</div>
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white">PKR {{ number_format($product->price, 2) }}</div>
                                     </div>
                                 </div>
                             </div>

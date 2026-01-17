@@ -134,7 +134,7 @@ class AdminProductController extends Controller
         $promotions = Promotion::where('is_active', true)
             ->where('end_date', '>', now())
             ->get();
-            
+       
         
         return view('admin.products.edit', compact('product', 'categories', 'promotions'));
     }
@@ -192,15 +192,14 @@ class AdminProductController extends Controller
         }
         $validated['images'] = $currentImages;
         
+        
+
         // Handle specifications if provided
         if ($request->has('specifications')) {
             $specs = [];
-            $keys = $request->specifications['key'] ?? [];
-            $values = $request->specifications['value'] ?? [];
-            
-            foreach ($keys as $index => $key) {
-                if (!empty($key) && !empty($values[$index])) {
-                    $specs[$key] = $values[$index];
+            foreach ($request->specifications as $key => $value) {
+                if (!empty($key) && !empty($value)) {
+                    $specs[$key] = $value;
                 }
             }
             $validated['specifications'] = !empty($specs) ? $specs : null;

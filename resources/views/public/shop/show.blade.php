@@ -29,35 +29,63 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
                 <!-- Product Images -->
-                <div class="flex flex-col-reverse">
-                    <!-- Image Gallery -->
-                    <div class="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                        <div class="grid grid-cols-4 gap-6">
-                            @if($product->images && count($product->images) > 0)
-                                @foreach($product->images as $index => $image)
-                                <div class="relative flex cursor-pointer items-center justify-center rounded-md bg-white dark:bg-gray-700 text-sm font-medium uppercase text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4 {{ $index === 0 ? 'ring-2 ring-blue-500' : '' }}">
-                                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $product->name }} - Image {{ $index + 1 }}" class="h-20 w-full object-cover rounded-md">
-                                </div>
-                                @endforeach
-                            @else
-                                <div class="col-span-4 bg-gray-200 dark:bg-gray-600 h-20 rounded-md flex items-center justify-center">
-                                    <span class="text-gray-500 dark:text-gray-400">No images available</span>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
+                <!-- Product Images Carousel -->
+<div class="flex flex-col gap-4">
 
-                    <!-- Main Image -->
-                    <div class="aspect-w-1 aspect-h-1 w-full">
-                        @if($product->images && count($product->images) > 0)
-                            <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->name }}" class="h-96 w-full object-cover object-center sm:rounded-lg">
-                        @else
-                            <div class="h-96 w-full bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center">
-                                <span class="text-gray-500 dark:text-gray-400 text-lg">No image available</span>
-                            </div>
-                        @endif
-                    </div>
+    {{-- Main Carousel --}}
+    <div class="relative overflow-hidden rounded-lg">
+        <div id="product-carousel"
+             class="flex transition-transform duration-500 ease-in-out"
+             style="transform: translateX(0%)">
+
+            @forelse($product->images as $image)
+                <div class="min-w-full">
+                    <img
+                        src="{{ asset('storage/' . $image) }}"
+                        alt="{{ $product->name }}"
+                        class="w-full h-[420px] object-cover rounded-lg">
                 </div>
+            @empty
+                <div class="min-w-full flex items-center justify-center h-[420px] bg-gray-200 dark:bg-gray-600 rounded-lg">
+                    <span class="text-gray-500 dark:text-gray-300">No image available</span>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- Navigation Buttons --}}
+        @if($product->images && count($product->images) > 1)
+            <button onclick="prevSlide()"
+                class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full">
+                ‹
+            </button>
+
+            <button onclick="nextSlide()"
+                class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full">
+                ›
+            </button>
+        @endif
+    </div>
+
+    {{-- Thumbnails --}}
+    @if($product->images && count($product->images) > 1)
+        <div class="grid grid-cols-4 gap-3">
+            @foreach($product->images as $index => $image)
+                <button
+                    onclick="goToSlide({{ $index }})"
+                    class="border-2 rounded-md overflow-hidden transition
+                        {{ $index === 0 ? 'border-blue-500' : 'border-transparent hover:border-gray-300' }}"
+                    id="thumb-{{ $index }}">
+                    <img
+                        src="{{ asset('storage/' . $image) }}"
+                        alt="Thumbnail {{ $index + 1 }}"
+                        class="h-20 w-full object-cover">
+                </button>
+            @endforeach
+        </div>
+    @endif
+
+</div>
+
 
                 <!-- Product Info -->
                 <div class="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
@@ -83,9 +111,9 @@
                         @endphp
 
                         <div class="flex items-center">
-                            <p class="text-3xl text-rose-400 font-bold">${{ number_format($finalPrice, 2) }}</p>
+                            <p class="text-3xl text-rose-400 font-bold">PKR {{ number_format($finalPrice, 2) }}</p>
                             @if($hasPromotion)
-                                <p class="ml-3 text-xl text-gray-500 dark:text-gray-400 line-through">${{ number_format($product->price, 2) }}</p>
+                                <p class="ml-3 text-xl text-gray-500 dark:text-gray-400 line-through">PKR {{ number_format($product->price, 2) }}</p>
                                 <span class="ml-3 bg-rose-100 text-rose-800 text-sm font-medium px-2.5 py-0.5 rounded">Save {{ $promotion->discount_type === 'percentage' ? $promotion->discount_value . '%' : '$' . number_format($promotion->discount_value, 2) }}</span>
                             @endif
                         </div>
@@ -257,7 +285,7 @@
                                 @endphp
                                 
                                 <div class="mt-2">
-                                    <p class="text-rose-400 font-bold">${{ number_format($relatedFinalPrice, 2) }}</p>
+                                    <p class="text-rose-400 font-bold">PKR {{ number_format($relatedFinalPrice, 2) }}</p>
                                     @if($relatedHasPromotion)
                                     <p class="text-sm text-gray-500 dark:text-gray-400 line-through">${{ number_format($relatedProduct->price, 2) }}</p>
                                     @endif
@@ -463,5 +491,39 @@
         // Initialize cart count on page load
         updateCartCount();
     </script>
+    <script>
+    let currentSlide = 0;
+    const totalSlides = {{ count($product->images ?? []) }};
+
+    function updateCarousel() {
+        const carousel = document.getElementById('product-carousel');
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Update thumbnails
+        for (let i = 0; i < totalSlides; i++) {
+            const thumb = document.getElementById(`thumb-${i}`);
+            if (thumb) {
+                thumb.classList.toggle('border-blue-500', i === currentSlide);
+                thumb.classList.toggle('border-transparent', i !== currentSlide);
+            }
+        }
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+    }
+</script>
+
     @endpush
 </x-public-layout>  

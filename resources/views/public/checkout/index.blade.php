@@ -120,7 +120,7 @@
                                     <div>
                                         <p class="font-medium text-gray-900 dark:text-white">{{ $item->name }} × {{ $item->qty }}</p>
                                     </div>
-                                    <p class="font-medium text-gray-900 dark:text-white">${{ number_format($item->price * $item->qty, 2) }}</p>
+                                    <p class="font-medium text-gray-900 dark:text-white">PKR {{ number_format($item->price * $item->qty, 2) }}</p>
                                 </div>
                             @endforeach
                         @else
@@ -129,7 +129,7 @@
                                     <div>
                                         <p class="font-medium text-gray-900 dark:text-white">{{ $item['name'] }} × {{ $item['quantity'] }}</p>
                                     </div>
-                                    <p class="font-medium text-gray-900 dark:text-white">${{ number_format($item['price'] * $item['quantity'], 2) }}</p>
+                                    <p class="font-medium text-gray-900 dark:text-white">PKR {{ number_format($item['price'] * $item['quantity'], 2) }}</p>
                                 </div>
                             @endforeach
                         @endif
@@ -149,7 +149,7 @@
                     
                     <div class="flex justify-between mb-2">
                         <p class="text-gray-600 dark:text-gray-400">Subtotal</p>
-                        <p class="text-gray-900 dark:text-white">${{ number_format($subtotal, 2) }}</p>
+                        <p class="text-gray-900 dark:text-white">PKR {{ number_format($subtotal, 2) }}</p>
                     </div>
                     
                     <div class="flex justify-between mb-2">
@@ -159,12 +159,12 @@
                     
                     <div class="flex justify-between mb-4">
                         <p class="text-gray-600 dark:text-gray-400">Tax</p>
-                        <p class="text-gray-900 dark:text-white">$0.00</p>
+                        <p class="text-gray-900 dark:text-white">PKR 0.00</p>
                     </div>
                     
                     <div class="flex justify-between border-t border-gray-200 dark:border-gray-600 pt-4 mb-4">
                         <p class="text-lg font-bold text-gray-900 dark:text-white">Total</p>
-                        <p class="text-lg font-bold text-gray-900 dark:text-white">${{ number_format($subtotal, 2) }}</p>
+                        <p class="text-lg font-bold text-gray-900 dark:text-white">PKR {{ number_format($subtotal, 2) }}</p>
                     </div>
                 </div>
             </div>

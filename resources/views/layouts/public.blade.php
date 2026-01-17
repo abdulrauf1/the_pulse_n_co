@@ -81,7 +81,7 @@
         <div class="absolute bottom-0 left-0 right-0 p-4 border-t dark:border-gray-700 bg-white dark:bg-gray-800">
             <div class="flex justify-between mb-4">
                 <span class="font-semibold">Total:</span>
-                <span id="cart-total" class="font-bold">$0.00</span>
+                <span id="cart-total" class="font-bold">PKR 0.00</span>
             </div>
             <button id="checkout-btn" 
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-center block disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
@@ -178,10 +178,10 @@
                         <div class="flex justify-between">
                             <div class="flex-1">
                                 <h3 class="font-medium">${item.name}</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">$${item.price} x ${item.qty || item.quantity}</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">PKR ${item.price} x ${item.qty || item.quantity}</p>
                             </div>
                             <div class="flex items-center">
-                                <span class="font-bold mr-2">$${item.subtotal || (item.price * (item.qty || item.quantity)).toFixed(2)}</span>
+                                <span class="font-bold mr-2">PKR ${item.subtotal || (item.price * (item.qty || item.quantity)).toFixed(2)}</span>
                                 <button class="remove-from-cart text-red-500 hover:text-red-700" data-rowid="${item.rowId || item.id}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -194,7 +194,7 @@
                 });
                 
                 cartItemsContainer.innerHTML = html;
-                cartTotal.textContent = `$${data.total || '0.00'}`;
+                cartTotal.textContent = `PKR ${data.total || '0.00'}`;
                 
                 // Enable checkout button
                 checkoutBtn.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
@@ -210,7 +210,7 @@
             } else {
                 emptyCartMessage.classList.remove('hidden');
                 cartItemsContainer.innerHTML = '';
-                cartTotal.textContent = '$0.00';
+                cartTotal.textContent = 'PKR 0.00';
                 
                 // Disable checkout button
                 checkoutBtn.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');

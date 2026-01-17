@@ -78,11 +78,11 @@
                                 <div class="flex items-center justify-between space-x-4">
                                     <div class="flex-1">
                                         <label for="minPrice" class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Min</label>
-                                        <input type="number" name="min_price" id="minPrice" min="0" max="{{ $priceRange['max'] }}" value="{{ request('min_price') }}" placeholder="${{ $priceRange['min'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="number" name="min_price" id="minPrice" min="0" max="{{ $priceRange['max'] }}" value="{{ request('min_price') }}" placeholder="PKR {{ $priceRange['min'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                     <div class="flex-1">
                                         <label for="maxPrice" class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Max</label>
-                                        <input type="number" name="max_price" id="maxPrice" min="0" max="{{ $priceRange['max'] }}" value="{{ request('max_price') }}" placeholder="${{ $priceRange['max'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="number" name="max_price" id="maxPrice" min="0" max="{{ $priceRange['max'] }}" value="{{ request('max_price') }}" placeholder="PKR {{ $priceRange['max'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                             </div>
@@ -131,11 +131,11 @@
                                 <div class="flex items-center justify-between space-x-4">
                                     <div class="flex-1">
                                         <label for="minPriceDesktop" class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Min</label>
-                                        <input type="number" name="min_price" id="minPriceDesktop" min="0" max="{{ $priceRange['max'] }}" value="{{ request('min_price') }}" placeholder="${{ $priceRange['min'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="number" name="min_price" id="minPriceDesktop" min="0" max="{{ $priceRange['max'] }}" value="{{ request('min_price') }}" placeholder="PKR {{ $priceRange['min'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                     <div class="flex-1">
                                         <label for="maxPriceDesktop" class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Max</label>
-                                        <input type="number" name="max_price" id="maxPriceDesktop" min="0" max="{{ $priceRange['max'] }}" value="{{ request('max_price') }}" placeholder="${{ $priceRange['max'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="number" name="max_price" id="maxPriceDesktop" min="0" max="{{ $priceRange['max'] }}" value="{{ request('max_price') }}" placeholder="PKR {{ $priceRange['max'] }}" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                             </div>
@@ -228,9 +228,9 @@
                                     @endphp
                                     
                                     <div class="mt-2">
-                                        <p class="text-rose-400 font-bold">${{ number_format($finalPrice, 2) }}</p>
+                                        <p class="text-rose-400 font-bold">PKR {{ number_format($finalPrice, 2) }}</p>
                                         @if($hasPromotion)
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 line-through">${{ number_format($product->price, 2) }}</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 line-through">PKR {{ number_format($product->price, 2) }}</p>
                                         @endif
                                     </div>
                                 </a>
@@ -404,7 +404,7 @@
             updateCartCount();
             
             // Show success message
-            showToast(`${quantity} ${productName} added to cart!`);
+            showToast(`PKR {quantity} PKR {productName} added to cart!`);
         }
 
         function updateCartCount() {
@@ -420,7 +420,7 @@
         function showToast(message, type = 'success') {
             // Create toast element
             const toast = document.createElement('div');
-            toast.className = `fixed top-4 right-4 px-4 py-2 rounded-md shadow-lg z-50 transform transition-transform duration-300 translate-y-0 ${
+            toast.className = `fixed top-4 right-4 px-4 py-2 rounded-md shadow-lg z-50 transform transition-transform duration-300 translate-y-0 PKR {
                 type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
             }`;
             toast.textContent = message;

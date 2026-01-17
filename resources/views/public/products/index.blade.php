@@ -72,7 +72,7 @@
                         <span class="text-green-500 font-medium">In Stock</span>
                     </div>
                     
-                    <p class="text-rose-400 text-2xl font-bold mb-4">$899.00</p>
+                    <p class="text-rose-400 text-2xl font-bold mb-4">PKR 899.00</p>
                     
                     <div class="mb-6">
                         <p class="text-gray-700 dark:text-gray-300 mb-4">The Premium Automatic Watch combines Swiss precision with elegant design, featuring a sapphire crystal face, stainless steel case, and genuine leather strap. Water resistant up to 50 meters.</p>
@@ -269,12 +269,12 @@
                             <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                                 <h4 class="font-medium text-gray-900 dark:text-white mb-2">Express Shipping</h4>
                                 <p class="text-gray-600 dark:text-gray-400 mb-2">2-3 business days</p>
-                                <p class="text-gray-900 dark:text-white font-medium">$14.99</p>
+                                <p class="text-gray-900 dark:text-white font-medium">PKR 14.99</p>
                             </div>
                             <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                                 <h4 class="font-medium text-gray-900 dark:text-white mb-2">Overnight Shipping</h4>
                                 <p class="text-gray-600 dark:text-gray-400 mb-2">1 business day</p>
-                                <p class="text-gray-900 dark:text-white font-medium">$29.99</p>
+                                <p class="text-gray-900 dark:text-white font-medium">PKR 29.99</p>
                             </div>
                         </div>
                         
@@ -307,7 +307,7 @@
                                 @endforeach
                                 <span class="text-gray-600 dark:text-gray-400 text-xs ml-2">(12 reviews)</span>
                             </div>
-                            <p class="text-rose-400 font-bold mt-2">${{ 399 + ($product * 100) }}</p>
+                            <p class="text-rose-400 font-bold mt-2">PKR {{ 399 + ($product * 100) }}</p>
                         </div>
                     </a>
                     <button class="mt-4 w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-700 transition">Add to Cart</button>

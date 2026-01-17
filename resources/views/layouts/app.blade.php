@@ -143,32 +143,7 @@
                                     </template>
                                 </button>
                                 
-                                <!-- Notifications dropdown -->
-                                <div class="relative mx-2" x-data="{ open: false }">
-                                    <button @click="open = !open" class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
-                                        <i class="fas fa-bell"></i>
-                                        <span class="sr-only">Notifications</span>
-                                        <div class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></div>
-                                    </button>
-                                    
-                                    <div x-show="open" @click.away="open = false" 
-                                        class="absolute right-0 z-20 w-64 mt-2 overflow-hidden bg-white rounded-md shadow-lg dark:bg-gray-800">
-                                        <div class="py-2">
-                                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                                <i class="fas fa-shopping-cart mr-2"></i> New order received
-                                            </a>
-                                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                                <i class="fas fa-user mr-2"></i> New customer registered
-                                            </a>
-                                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                                <i class="fas fa-exclamation-triangle mr-2 text-yellow-500"></i> Low stock alert
-                                            </a>
-                                        </div>
-                                        <a href="#" class="block py-2 text-sm font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
-                                            View all notifications
-                                        </a>
-                                    </div>
-                                </div>
+                               
                                 
                                 <!-- User dropdown -->
                                 <div class="relative ml-2" x-data="{ open: false }">
