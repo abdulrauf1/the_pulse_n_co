@@ -27,6 +27,21 @@ use App\Http\Controllers\Public\{
     PageController,
 };
 
+
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/test-mail', function () {
+    Mail::raw('This is a test email from Laravel using Gmail SMTP.', function ($message) {
+        $message->to('meetings.gattc@gmail.com')
+                ->subject('Laravel Gmail Test');
+    });
+
+    return 'Email sent successfully!';
+});
+
+
+
+
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
